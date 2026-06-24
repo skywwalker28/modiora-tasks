@@ -1,4 +1,4 @@
-package skyww.modiora.Block1;
+package skyww.modiora.block1;
 
 public class Task3 {
     public static void main(String[] args) {

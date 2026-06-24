@@ -1,4 +1,4 @@
-package skyww.modiora.Block2;
+package skyww.modiora.block2;
 
 import java.math.BigDecimal;
 
