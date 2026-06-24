@@ -1,4 +1,4 @@
-package skyww.modiora.Tasks;
+package skyww.modiora.Block1;
 
 public class Task4 {
     /*
