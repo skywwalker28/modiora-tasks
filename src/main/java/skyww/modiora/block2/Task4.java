@@ -73,6 +73,7 @@ public class Task4 {
         }
     }
 
+    // №2
     public static class TimeOfDay {
         public static void timesOfDay(int time, int dayOfWeek) {
             System.out.print("Сейчас ");
@@ -106,6 +107,7 @@ public class Task4 {
     }
 
 
+    // №3
     public static class SmartCalc {
         public static String calculate(int a, int b, char operation) {
             if ((operation == '/' || operation == '%') && b == 0) return "Ошибка деления на ноль";
@@ -141,7 +143,7 @@ public class Task4 {
         }
     }
 
-
+    // №4
     public static class GuessGame {
         public static String isHit(int secret, int guess) {
             if (secret == guess) return "Угадал!";
