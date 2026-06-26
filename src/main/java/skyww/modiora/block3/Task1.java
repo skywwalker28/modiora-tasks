@@ -25,8 +25,8 @@ public class Task1 {
 
         /// №4
         public static long power(int base, int exp) {
-            long res = base;
-            for (int i = 1; i < exp; i++) res = res * base;
+            long res = 1;
+            for (int i = 0; i < exp; i++) res = res * base;
 
             return res;
         }
@@ -71,7 +71,7 @@ public class Task1 {
             System.out.println();
 
             /// factorial
-            System.out.println(factorial(0)); // Вывод: 0
+            System.out.println(factorial(0)); // Вывод: 1
             System.out.println(factorial(1)); // Вывод: 1
             System.out.println(factorial(5)); // Вывод: 120
             System.out.println(factorial(7)); // Вывод: 5040
