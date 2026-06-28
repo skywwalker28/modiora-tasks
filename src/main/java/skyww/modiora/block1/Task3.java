@@ -6,9 +6,9 @@ public class Task3 {
         System.out.println(123*456);
         System.out.println("*".repeat(10));
 
-        System.out.print("слово 1");
-        System.out.print("слово 2");
-        System.out.print("слово 3");
+        System.out.print("слово 1, ");
+        System.out.print("слово 2, ");
+        System.out.println("слово 3");
     }
 }
 
@@ -17,5 +17,5 @@ public class Task3 {
 Artur
 56088
 **********
-123
+слово 1, слово 2, слово 3
 */
