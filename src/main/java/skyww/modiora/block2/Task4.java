@@ -1,5 +1,7 @@
 package skyww.modiora.block2;
 
+import java.time.LocalDateTime;
+
 public class Task4 {
 
     // №1
@@ -7,16 +9,22 @@ public class Task4 {
         // Вариант 1 (через if / else if)
 
         public static String scaleIfElse(int score) {
-            if (score >= 90 && score <= 100) return "Отлично";
-            else if (score >= 70 && score <= 89) return "Хорошо";
-            else if (score >= 50 && score <= 69) return "Удовлитворительно";
-            else if (score >= 0 && score <= 49) return "Неудовлитворительно";
-            else return "Недопустимая оценка";
+            if (score >= 90 && score <= 100) {
+                return "Отлично";
+            } else if (score >= 70 && score <= 89) {
+                return "Хорошо";
+            } else if (score >= 50 && score <= 69) {
+                return "Удовлитворительно";
+            } else if (score >= 0 && score <= 49) {
+                return "Неудовлитворительно";
+            } else return "Недопустимая оценка";
         }
 
         // Вариант 2 (через switch)
         public static String scaleSwitchCase(int score) {
-            if (score < 0 || score > 100) return "Недопустимая оценка";
+            if (score < 0 || score > 100) {
+                return "Недопустимая оценка";
+            }
 
             return switch (score/10) {
                 case 10, 9 -> "Отлично";
@@ -75,33 +83,38 @@ public class Task4 {
 
     // №2
     public static class TimeOfDay {
-        public static void timesOfDay(int time, int dayOfWeek) {
-            System.out.print("Сейчас ");
-            if (time >= 5 && time <= 11) System.out.println("Утро");
-            else if (time >= 12 && time <= 17) System.out.println("День");
-            else if (time >= 18 && time <= 22) System.out.println("Вечер");
-            else if (time == 23 || (time >= 0 && time <= 4)) System.out.println("Ночь");
-            else System.out.println("Неизвестно");
+        public static void timesOfDay(LocalDateTime time) {
+            int hour = time.getHour();
+            int day = time.getDayOfWeek().getValue();
 
-            System.out.println("Сейчас рабочее время? " + (dayOfWeek >= 1 && dayOfWeek <= 5 && time >= 9 && time <= 18));
+            System.out.print("Сейчас ");
+            if (hour >= 5 && hour <= 11) System.out.println("Утро");
+            else if (hour >= 12 && hour <= 17) System.out.println("День");
+            else if (hour >= 18 && hour <= 22) System.out.println("Вечер");
+            else System.out.println("Ночь");
+
+            System.out.println("Сейчас рабочее время? " + (day >= 1 && day <= 5 && hour >= 9 && hour < 18));
         }
 
 
         public static void main(String[] args) {
-            timesOfDay(10, 1);
-            timesOfDay(23, 3);
-            timesOfDay(14, 7);
-            timesOfDay(18, 5);
+            timesOfDay(LocalDateTime.now()); // Сре 15:11
+            timesOfDay(LocalDateTime.of(2026, 8, 13, 23, 20)); // Чет 23:20
+            timesOfDay(LocalDateTime.of(2026, 8, 15, 11, 43)); // Суб 11:43
+            timesOfDay(LocalDateTime.of(2026, 8, 14, 18, 12)); // Пят 18:12
+            timesOfDay(LocalDateTime.of(2026, 8, 17, 4, 7)); // Пон 04:07
 
             /*
-            Сейчас Утро
+            Сейчас День
             Сейчас рабочее время? true
             Сейчас Ночь
             Сейчас рабочее время? false
-            Сейчас День
+            Сейчас Утро
             Сейчас рабочее время? false
             Сейчас Вечер
-            Сейчас рабочее время? true
+            Сейчас рабочее время? false
+            Сейчас Ночь
+            Сейчас рабочее время? false
             */
         }
     }
@@ -110,7 +123,9 @@ public class Task4 {
     // №3
     public static class SmartCalc {
         public static String calculate(int a, int b, char operation) {
-            if ((operation == '/' || operation == '%') && b == 0) return "Ошибка деления на ноль";
+            if ((operation == '/' || operation == '%') && b == 0) {
+                return "Ошибка деления на ноль";
+            }
 
             System.out.print(a + " " + operation + " " + b + " = ");
             return switch (operation) {
@@ -146,7 +161,10 @@ public class Task4 {
     // №4
     public static class GuessGame {
         public static String isHit(int secret, int guess) {
-            if (secret == guess) return "Угадал!";
+            if (secret == guess) {
+                return "Угадал!";
+            }
+
             return guess > secret ? "Меньше" : "Больше";
         }
 
