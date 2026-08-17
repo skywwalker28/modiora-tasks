@@ -25,11 +25,19 @@ public class Task2 {
                     indexMin = i;
                 }
 
-                if (cur % 2 == 0) even++;
-                else odd++;
+                if (cur % 2 == 0) {
+                    even++;
+                } else {
+                    odd++;
+                }
 
-                if (cur > 0) positive++;
-                else if (cur < 0) negative++;
+                if (cur > 0) {
+                    positive++;
+                }
+
+                else if (cur < 0) {
+                    negative++;
+                }
             }
 
             System.out.printf("""
@@ -62,11 +70,15 @@ public class Task2 {
             int[] massive = {1, 2, 3, 4, 5, 6, 7};
 
             System.out.print("Прямой порядок: ");
-            for (int current : massive) System.out.print(current + " ");
+            for (int current : massive) {
+                System.out.print(current + " ");
+            }
 
 
             System.out.print("\nОбратный порядок: ");
-            for (int i = massive.length - 1; i >= 0; i--) System.out.print(massive[i] + " ");
+            for (int i = massive.length - 1; i >= 0; i--) {
+                System.out.print(massive[i] + " ");
+            }
 
             int left = 0, right = massive.length - 1;
             while (left < right) {
@@ -80,7 +92,9 @@ public class Task2 {
             System.out.println("\nПосле переворота: " + Arrays.toString(massive));
 
             int lastEl = massive[massive.length - 1];
-            for (int i = massive.length - 1; i > 0; i--) massive[i] = massive[i - 1];
+            for (int i = massive.length - 1; i > 0; i--) {
+                massive[i] = massive[i - 1];
+            }
             massive[0] = lastEl;
 
             System.out.println("После сдвига вправо: " + Arrays.toString(massive));
@@ -98,7 +112,10 @@ public class Task2 {
     public static class ArraySearch {
         public static void main(String[] args) {
             int[] massive = new int[10];
-            for (int i = 0; i < massive.length; i++) massive[i] = (int) (Math.random() * 10) + 1;
+            for (int i = 0; i < massive.length; i++) {
+                massive[i] = (int) (Math.random() * 10) + 1;
+            }
+
             int target = 5;
 
             System.out.println("Массив: " + Arrays.toString(massive));
@@ -113,7 +130,9 @@ public class Task2 {
                 }
             }
 
-            if (!find) System.out.println("Элемент не найден в массиве");
+            if (!find) {
+                System.out.println("Элемент не найден в массиве");
+            }
 
             find = false;
             Arrays.sort(massive);
@@ -129,9 +148,11 @@ public class Task2 {
                     System.out.println("Элемент найден, его индекс: " + mid + ". Бинарный поиск");
                     find = true;
                     break;
+                } else if (massive[mid] > target) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
                 }
-                else if (massive[mid] > target) right = mid - 1;
-                else left = mid + 1;
             }
 
             if (!find) System.out.println("Элемент не найден в массиве. Бинарный поиск");
@@ -172,7 +193,9 @@ public class Task2 {
                     secondIndex++;
                 }
 
-                if (merge[index++] % 2 == 0) even++;
+                if (merge[index++] % 2 == 0) {
+                    even++;
+                }
             }
 
             System.out.println("Объединенный массив: " + Arrays.toString(merge));
@@ -181,7 +204,9 @@ public class Task2 {
             int idx = 0;
 
             for (int cur : merge) {
-                if (cur % 2 == 0) evenMas[idx++] = cur;
+                if (cur % 2 == 0) {
+                    evenMas[idx++] = cur;
+                }
             }
 
             System.out.println("Массив с четными элементами: " + Arrays.toString(evenMas));

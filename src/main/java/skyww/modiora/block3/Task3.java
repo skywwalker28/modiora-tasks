@@ -28,7 +28,9 @@ public class Task3 {
 
             for (int i = 0; i < matrix[0].length; i++) {
                 int sumColumn = 0;
-                for (int[] col : matrix) sumColumn += col[i];
+                for (int[] col : matrix) {
+                    sumColumn += col[i];
+                }
 
 
                 System.out.println("Сумма столбца " + (i + 1) + ": " + sumColumn);
@@ -84,11 +86,15 @@ public class Task3 {
 
             // Вывод строки
             System.out.print("Вывод строки: ");
-            for (int j = 0; j < transposition[0].length; j++) System.out.print(transposition[rowIndex][j] + " ");
+            for (int j = 0; j < transposition[0].length; j++) {
+                System.out.print(transposition[rowIndex][j] + " ");
+            }
 
             // Вывод столбца
             System.out.print("\nВывод столбца: ");
-            for (int[] ints : transposition) System.out.print(ints[columnIndex] + " ");
+            for (int[] ints : transposition) {
+                System.out.print(ints[columnIndex] + " ");
+            }
 
 
             /*
@@ -115,8 +121,11 @@ public class Task3 {
             System.out.println("Шахматная доска: ");
             for (int i = 0; i < 8; i++) {
                 for (int j = 0; j < 8; j++) {
-                    if ((i + j) % 2 == 0) chessBoard[i][j] = '.';
-                    else chessBoard[i][j] = '#';
+                    if ((i + j) % 2 == 0) {
+                        chessBoard[i][j] = '.';
+                    } else {
+                        chessBoard[i][j] = '#';
+                    }
 
                     System.out.print(chessBoard[i][j] + " ");
                 }
@@ -125,7 +134,9 @@ public class Task3 {
             }
 
             // Расстановка ферзей
-            for (int col = 0; col < 8; col++) chessBoard[0][col] = 'Q';
+            for (int col = 0; col < 8; col++) {
+                chessBoard[0][col] = 'Q';
+            }
 
             System.out.println("\nПосле расстановки: ");
             for (int i = 0; i < 8; i++) {
@@ -152,8 +163,11 @@ public class Task3 {
 
             }
 
-            if (attack) System.out.println("Ферзи бьют друг друга");
-            else System.out.println("Ферзи не бьют друг друга");
+            if (attack) {
+                System.out.println("Ферзи бьют друг друга");
+            } else {
+                System.out.println("Ферзи не бьют друг друга");
+            }
 
             /*
             Результат:
@@ -211,7 +225,9 @@ public class Task3 {
                 int space = (8 - i - 1) * 4 / 2;
                 System.out.print(" ".repeat(space));
 
-                for (int j = 0; j <= i; j++) System.out.printf("%-4d", triangle[i][j]);
+                for (int j = 0; j <= i; j++) {
+                    System.out.printf("%-4d", triangle[i][j]);
+                }
                 System.out.println();
             }
 
@@ -219,7 +235,9 @@ public class Task3 {
             System.out.println("\nПроверка сумм строк:");
             for (int i = 0; i < 8; i++) {
                 int sum = 0;
-                for (int j = 0; j <= i; j++) sum += triangle[i][j];
+                for (int j = 0; j <= i; j++) {
+                    sum += triangle[i][j];
+                }
 
                 int correctRes = (int) Math.pow(2, i);
                 System.out.printf("""

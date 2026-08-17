@@ -4,14 +4,21 @@ public class Task6 {
 
     // №1
     public static int countWords(String text) {
-        if (text == null || text.isBlank()) return 0;
+        if (text == null || text.isBlank()) {
+            return 0;
+        }
 
         int count = 0, result = 0;
         for (int i = 0; i < text.length(); i++) {
             char current = text.charAt(i);
 
-            if (!Character.isLetter(current)) count = 0;
-            else if (count++ == 0) result++;
+            if (!Character.isLetter(current)) {
+                count = 0;
+            }
+
+            else if (count++ == 0) {
+                result++;
+            }
         }
 
         return result;
@@ -19,10 +26,14 @@ public class Task6 {
 
     // №2
     public static boolean isValidEmail(String email) {
-        if (email == null || email.isBlank() || email.contains(" ")) return false;
+        if (email == null || email.isBlank() || email.contains(" ")) {
+            return false;
+        }
 
         int at = email.indexOf('@');
-        if (at != email.lastIndexOf('@') || at == 0 || at == -1) return false;
+        if (at != email.lastIndexOf('@') || at == 0 || at == -1) {
+            return false;
+        }
 
         String domain = email.substring(at+1);
 
@@ -32,14 +43,18 @@ public class Task6 {
 
     // №3
     public static boolean isPalindrome(String word) {
-        if (word == null || word.isBlank()) return false;
+        if (word == null || word.isBlank()) {
+            return false;
+        }
 
         word = word.replace(" ", "");
         word = word.toLowerCase();
 
         int left = 0, right = word.length() - 1;
         while (left < right) {
-            if (word.charAt(left++) != word.charAt(right--)) return false;
+            if (word.charAt(left++) != word.charAt(right--)) {
+                return false;
+            }
         }
 
         return true;

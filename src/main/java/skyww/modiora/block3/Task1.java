@@ -4,21 +4,41 @@ public class Task1 {
     public static class MathUtils {
 
         /// №1
-        public static int min(int a, int b) { return a > b ? b : a; }
-        public static int max(int a, int b) { return a > b ? a : b; }
-        public static int clamp(int value, int low, int high) { return max(low, min(value, high)); }
+        public static int min(int a, int b) {
+            return a > b ? b : a;
+        }
+
+        public static int max(int a, int b) {
+            return a > b ? a : b;
+        }
+
+        public static int clamp(int value, int low, int high) {
+            return max(low, min(value, high));
+        }
 
         /// №2
-        public static boolean isLeapYear(int year) { return year % 400 == 0 || year % 4 == 0 && year % 100 != 0; }
-        public static double celsiusToFahrenheit(double c) { return c * 1.8 + 32; }
-        public static double fahrenheitToCelsius(double f) { return (f - 32) / 1.8; }
+        public static boolean isLeapYear(int year) {
+            return year % 400 == 0 || year % 4 == 0 && year % 100 != 0;
+        }
+
+        public static double celsiusToFahrenheit(double c) {
+            return c * 1.8 + 32;
+        }
+
+        public static double fahrenheitToCelsius(double f) {
+            return (f - 32) / 1.8;
+        }
 
         /// №3
         public static long factorial(int n) {
-            if (n < 0) throw new IllegalArgumentException();
+            if (n < 0) {
+                throw new IllegalArgumentException();
+            }
 
             long res = 1L;
-            for (int i = 1; i <= n; i++) res = res * i;
+            for (int i = 1; i <= n; i++) {
+                res = res * i;
+            }
 
             return res;
         }
@@ -26,7 +46,9 @@ public class Task1 {
         /// №4
         public static long power(int base, int exp) {
             long res = 1;
-            for (int i = 0; i < exp; i++) res = res * base;
+            for (int i = 0; i < exp; i++) {
+                res = res * base;
+            }
 
             return res;
         }
