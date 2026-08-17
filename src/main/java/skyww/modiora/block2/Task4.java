@@ -88,10 +88,15 @@ public class Task4 {
             int day = time.getDayOfWeek().getValue();
 
             System.out.print("Сейчас ");
-            if (hour >= 5 && hour <= 11) System.out.println("Утро");
-            else if (hour >= 12 && hour <= 17) System.out.println("День");
-            else if (hour >= 18 && hour <= 22) System.out.println("Вечер");
-            else System.out.println("Ночь");
+            if (hour >= 5 && hour <= 11) {
+                System.out.println("Утро");
+            } else if (hour >= 12 && hour <= 17) {
+                System.out.println("День");
+            } else if (hour >= 18 && hour <= 22) {
+                System.out.println("Вечер");
+            } else {
+                System.out.println("Ночь");
+            }
 
             System.out.println("Сейчас рабочее время? " + (day >= 1 && day <= 5 && hour >= 9 && hour < 18));
         }
