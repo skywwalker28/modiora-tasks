@@ -7,10 +7,15 @@ public class Task5 {
         public static void main(String[] args) {
             StringBuilder sb = new StringBuilder();
             for (int i = 1; i <= 100; i++) {
-                if (i % 3 == 0 && i % 5 == 0) sb.append("FizzBuzz").append(", ");
-                else if (i % 3 == 0) sb.append("Fizz").append(", ");
-                else if (i % 5 == 0) sb.append("Buzz").append(", ");
-                else sb.append(i).append(", ");
+                if (i % 3 == 0 && i % 5 == 0) {
+                    sb.append("FizzBuzz").append(", ");
+                } else if (i % 3 == 0) {
+                    sb.append("Fizz").append(", ");
+                } else if (i % 5 == 0) {
+                    sb.append("Buzz").append(", ");
+                } else {
+                    sb.append(i).append(", ");
+                }
             }
 
             System.out.println(sb.substring(0, sb.length() - 2) + ".");
@@ -78,8 +83,14 @@ public class Task5 {
             // Правый треугольник
             for (int i = 1; i <= n; i++) {
 
-                for (int j = n - i; j > 0; j--) System.out.print("  ");
-                for (int k = 0; k < i; k++) System.out.print("* ");
+                for (int j = n - i; j > 0; j--) {
+                    System.out.print("  ");
+                }
+
+                for (int k = 0; k < i; k++) {
+                    System.out.print("* ");
+                }
+
                 System.out.println();
             }
 
@@ -88,8 +99,13 @@ public class Task5 {
             // Пирамида по центру
             for (int i = 1; i <= n; i++) {
 
-                for (int j = n - i; j > 0; j--) System.out.print("  ");
-                for (int k = 1; k <= 2 * i - 1; k++) System.out.print("* ");
+                for (int j = n - i; j > 0; j--) {
+                    System.out.print("  ");
+                }
+
+                for (int k = 1; k <= 2 * i - 1; k++) {
+                    System.out.print("* ");
+                }
                 System.out.println();
             }
 
