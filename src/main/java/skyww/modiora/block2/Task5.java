@@ -1,12 +1,24 @@
 package skyww.modiora.block2;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Task5 {
 
     // №1
     public static class FizzBuzz {
         public static void main(String[] args) {
+            fuzzBuzzPrinter(100);
+
+            /*
+            Вывод:
+            1, 2, Fizz, 4, Buzz, Fizz, 7, 8, Fizz, Buzz, 11, Fizz, 13, 14, FizzBuzz, ... , Buzz.
+            */
+        }
+
+        private static void fuzzBuzzPrinter(int n) {
             StringBuilder sb = new StringBuilder();
-            for (int i = 1; i <= 100; i++) {
+            for (int i = 1; i <= n; i++) {
                 if (i % 3 == 0 && i % 5 == 0) {
                     sb.append("FizzBuzz").append(", ");
                 } else if (i % 3 == 0) {
@@ -24,43 +36,61 @@ public class Task5 {
 
     // №2
     public static class DigitAnalyzer {
+        public static class AnalyzeNumber {
+            private int digitCount;
+            private int sum;
+            private int maxInteger = Integer.MIN_VALUE;
+        }
+
         public static void main(String[] args) {
-            int num = 12344321, temp = num, countDigit = 0, sum = 0, maxDigit = Integer.MIN_VALUE;
-
-            while (temp > 0) {
-                int digit = temp % 10;
-                sum += digit;
-                maxDigit = Math.max(maxDigit, digit);
-                countDigit++;
-                temp /= 10;
-            }
-
-            int reversed = 0;
-            temp = num;
-            while (temp > 0) {
-                int digit = temp % 10;
-                reversed = reversed * 10 + digit;
-                temp /= 10;
-            }
-
-            boolean isPalindrome = reversed == num;
-
-            System.out.printf("""
-                    Число: %d
-                    Цифр: %d
-                    Сумма цифр: %d
-                    Максимальная цифра: %d,
-                    Палиндром: %s
-                    """, num, countDigit, sum, maxDigit, isPalindrome ? "да" : "нет");
+            int num = 12344321;
+            printResults(num, analyzeNumber(num), isPalindrome(num));
 
             /*
             Вывод:
             Число: 12344321
             Цифр: 8
             Сумма цифр: 20
-            Максимальная цифра: 4,
+            Максимальная цифра: 4
             Палиндром: да
             */
+        }
+
+        private static AnalyzeNumber analyzeNumber(int num) {
+            AnalyzeNumber analyzeNumber = new AnalyzeNumber();
+            int temp = num;
+
+            while (temp > 0) {
+                int digit = temp % 10;
+                analyzeNumber.sum += digit;
+                analyzeNumber.maxInteger = Math.max(analyzeNumber.maxInteger, digit);
+                analyzeNumber.digitCount++;
+                temp /= 10;
+            }
+
+            return analyzeNumber;
+        }
+
+        private static boolean isPalindrome(int num) {
+            int reversed = 0, copy = num;
+            while (copy > 0) {
+                int digit = copy % 10;
+                reversed = reversed * 10 + digit;
+                copy /= 10;
+            }
+
+            return reversed == num;
+        }
+
+        public static void printResults(int num, AnalyzeNumber analyze, boolean isPalindrome) {
+
+            System.out.printf("""
+                    Число: %d
+                    Цифр: %d
+                    Сумма цифр: %d
+                    Максимальная цифра: %d
+                    Палиндром: %s
+                    """, num, analyze.digitCount, analyze.sum, analyze.maxInteger, isPalindrome ? "да" : "нет");
         }
     }
 
@@ -70,46 +100,18 @@ public class Task5 {
             int n = 5;
 
             // Квадрат 5 * 5
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    System.out.print("* ");
-                }
-                System.out.println();
-            }
-
-
+            square(n);
             System.out.println();
 
             // Правый треугольник
-            for (int i = 1; i <= n; i++) {
-
-                for (int j = n - i; j > 0; j--) {
-                    System.out.print("  ");
-                }
-
-                for (int k = 0; k < i; k++) {
-                    System.out.print("* ");
-                }
-
-                System.out.println();
-            }
-
+            rightTriangle(n);
             System.out.println();
 
             // Пирамида по центру
-            for (int i = 1; i <= n; i++) {
-
-                for (int j = n - i; j > 0; j--) {
-                    System.out.print("  ");
-                }
-
-                for (int k = 1; k <= 2 * i - 1; k++) {
-                    System.out.print("* ");
-                }
-                System.out.println();
-            }
-
+            centerPyramid(n);
             System.out.println();
+
+
             /*
             Вывод:
 
@@ -125,22 +127,77 @@ public class Task5 {
               * * * *
             * * * * *
 
-                    *
-                  * * *
-                * * * * *
-              * * * * * * *
-            * * * * * * * * *
+                 *
+                * *
+               * * *
+              * * * *
+             * * * * *
 
             */
+        }
+
+        private static void square(int n) {
+            for (int i = 0; i < n; i++) {
+                for (int j = 0; j < n; j++) {
+                    System.out.print("* ");
+                }
+                System.out.println();
+            }
+        }
+
+        private static void rightTriangle(int n) {
+            for (int i = 1; i <= n; i++) {
+
+                for (int j = n - i; j > 0; j--) {
+                    System.out.print("  ");
+                }
+
+                for (int k = 0; k < i; k++) {
+                    System.out.print("* ");
+                }
+
+                System.out.println();
+            }
+        }
+
+        private static void centerPyramid(int n) {
+            for (int i = 1; i <= n; i++) {
+
+                for (int j = n - i; j > 0; j--) {
+                    System.out.print(" ");
+                }
+
+                for (int k = 1; k <= i; k++) {
+                    System.out.print(" *");
+                }
+
+                System.out.println();
+            }
         }
     }
 
     // №4
     public static class PrimeNumber {
-        public static void main(String[] args) {
-            int count = 0;
+        public static class PrimeResult {
+            private final List<Integer> primes = new ArrayList<>();
+            private int count;
+        }
 
-            for (int i = 2; i <= 100; i++) {
+        public static void main(String[] args) {
+            int limit = 100;
+            printResults(searchPrimeNumbers(limit));
+
+            /*
+            Вывод:
+            2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
+            Всего простых чисел: 25
+            */
+        }
+
+        private static PrimeResult searchPrimeNumbers(int limit) {
+            PrimeResult primeResult = new PrimeResult();
+
+            for (int i = 2; i <= limit; i++) {
                 boolean isPrime = true;
 
                 for (int candidate = 2; candidate <= Math.sqrt(i); candidate++) {
@@ -150,18 +207,21 @@ public class Task5 {
                     }
                 }
 
-                if (isPrime){
-                    count++;
-                    System.out.print(i + " ");
+                if (isPrime) {
+                    primeResult.count++;
+                    primeResult.primes.add(i);
                 }
             }
 
-            System.out.print("\nВсего простых чисел: " + count);
-            /*
-            Вывод:
-            2 3 5 7 11 13 17 19 23 29 31 37 41 43 47 53 59 61 67 71 73 79 83 89 97
-            Всего простых чисел: 25
-            */
+            return primeResult;
+        }
+
+        public static void printResults(PrimeResult primeResult) {
+            for (int i = 0; i < primeResult.primes.size(); i++) {
+                System.out.print(primeResult.primes.get(i) + " ");
+            }
+
+            System.out.print("\nВсего простых чисел: " + primeResult.count);
         }
     }
 }
