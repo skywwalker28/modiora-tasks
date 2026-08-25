@@ -76,12 +76,12 @@ public class Task1 {
 
     /// №2
     public static class BankAccount {
-        private static int totalAccount;
-        private final String number;
-        private final String owner;
+        public static int totalAccount;
+        private String number;
+        private String owner;
         private double balance;
 
-        BankAccount(String number, String owner, double balance) {
+        public BankAccount(String number, String owner, double balance) {
             this.number = number;
             this.owner = owner;
             this.balance = balance;
