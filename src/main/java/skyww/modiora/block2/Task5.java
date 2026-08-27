@@ -127,11 +127,11 @@ public class Task5 {
               * * * *
             * * * * *
 
-                 *
-                * *
-               * * *
-              * * * *
-             * * * * *
+                *
+               * *
+              * * *
+             * * * *
+            * * * * *
 
             */
         }
@@ -168,7 +168,7 @@ public class Task5 {
                 }
 
                 for (int k = 1; k <= i; k++) {
-                    System.out.print(" *");
+                    System.out.print("* ");
                 }
 
                 System.out.println();
