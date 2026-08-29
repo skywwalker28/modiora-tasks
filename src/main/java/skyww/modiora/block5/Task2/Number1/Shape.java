@@ -1,4 +1,4 @@
-package skyww.modiora.block5.Task2;
+package skyww.modiora.block5.Task2.Number1;
 
 public class Shape {
 
