@@ -1,4 +1,4 @@
-package skyww.modiora.block5.Task1;
+package skyww.modiora.block5.Task1.Number1;
 
 public class ElectricCar extends Car {
     private double batteryLevel;
