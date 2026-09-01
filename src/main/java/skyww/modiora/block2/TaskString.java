@@ -8,7 +8,7 @@ public class TaskString {
             printResults(str);
         }
 
-        public static String searchCount(String str) {
+        public static int[] searchCount(String str) {
             int spaces = 0, digits = 0, letters = 0;
             for (int i = 0; i < str.length(); i++) {
                 char current = str.charAt(i);
@@ -22,11 +22,14 @@ public class TaskString {
                 }
             }
 
+            return new int[]{spaces, digits, letters};
+        }
+
+        public static String formatTransforms(int a, int b, int c) {
             return """
                     Количество пробелов: %d
                     Количество цифр: %d
-                    Количество букв: %d"""
-                    .formatted(spaces, digits, letters);
+                    Количество букв: %d""".formatted(a, b, c);
         }
 
         public static String searchIndex(String str, String target) {
@@ -45,6 +48,9 @@ public class TaskString {
         }
 
         public static void printResults(String str) {
+            int[] search = searchCount(str);
+            String formatTransform = formatTransforms(search[0], search[1], search[2]);
+
             System.out.printf("""
                     Строка: "%s"
                     Длина: %d
@@ -56,7 +62,7 @@ public class TaskString {
                     После замены "World" на "Java": "%s"
                     """,
                     str, str.length(), toUpperLowerCaseTrim(str),
-                    searchCount(str), str.contains("World") ? "да" : "нет",
+                    formatTransform, str.contains("World") ? "да" : "нет",
                     searchIndex(str, "o"), str.substring(0, 5), str.replace("World", "Java"));
         }
 
@@ -82,15 +88,19 @@ public class TaskString {
     public static class Palindrome{
         public static void main(String[] args) {
             String str = "A man a plan a canal Panama";
-            System.out.println("\"" + str + "\" — " + isPalindrome(str));
+            System.out.println("\"" + str + "\" — " + printResult(str));
         }
 
-        public static String isPalindrome(String str) {
+        public static boolean isPalindrome(String str) {
             str = str.replaceAll("[^a-zA-Zа-яА-Я]", "");
             str = str.toLowerCase();
 
             StringBuilder sb = new StringBuilder(str);
-            return sb.reverse().toString().equals(str) ? "да" : "нет";
+            return sb.reverse().toString().equals(str);
+        }
+
+        public static String printResult(String str) {
+            return isPalindrome(str) ? "да" : "нет";
         }
 
         /*
@@ -145,35 +155,51 @@ public class TaskString {
             Student student2 = new Student("Мария Петрова", 21, 4.90);
             Student student3 = new Student("Алексей Смирнов", 19, 3.85);
 
-            printTable(student1, student2, student3);
+            printTable(new Student[]{student1, student2, student3});
             /*
-            +----+------------------+------+--------+
-            | №  | Имя              | Воз. | Балл   |
-            +----+------------------+------+--------+
-            |  1 | Иван Иванов      |   20 |   4.75 |
-            |  2 | Мария Петрова    |   21 |   4.90 |
-            |  3 | Алексей Смирнов  |   19 |   3.85 |
-            +----+------------------+------+--------+
+            +--------------------------------------+
+            | №  | Имя             | Воз. | Балл   |
+            +--------------------------------------+
+            |  1 | Иван Иванов     |   20 |   4.75 |
+            |  2 | Мария Петрова   |   21 |   4.90 |
+            |  3 | Алексей Смирнов |   19 |   3.85 |
+            +--------------------------------------+
             */
 
         }
 
-        public static void printTable(Student student1, Student student2, Student student3) {
-            String line = "+----+------------------+------+--------+";
-            String header = "| №  | Имя              | Воз. | Балл   |";
+        public static void printTable(Student[] students) {
+            if (students.length == 0) {
+                System.out.println("Список студентов пуст");
+                return;
+            }
+
+           int maxLenName = searchMaxLenName(students);
+
+            String dashes = "-".repeat(4 + 6 + 8 + 5 + maxLenName);
+            String line = "+" + dashes + "+";
+
+            String headerFormat = "| №  | %-" + maxLenName + "s | Воз. | Балл   |%n";
+            String rowFormat = "| %2d | %-" + maxLenName + "s | %4d | %6.2f |%n";
 
             System.out.println(line);
-            System.out.println(header);
+            System.out.printf(headerFormat, "Имя");
             System.out.println(line);
 
-            System.out.printf("| %2d | %-16s | %4d | %6.2f |%n",
-                    1, student1.name(), student1.age(), student1.avg());
-            System.out.printf("| %2d | %-16s | %4d | %6.2f |%n",
-                    2, student2.name(), student2.age(), student2.avg());
-            System.out.printf("| %2d | %-16s | %4d | %6.2f |%n",
-                    3, student3.name(), student3.age(), student3.avg());
-
+            for (int i = 0; i < students.length; i++) {
+                Student s = students[i];
+                System.out.printf(rowFormat, (i + 1), s.name(), s.age(), s.avg());
+            }
             System.out.println(line);
+        }
+
+        private static int searchMaxLenName(Student[] students) {
+            int res = 3;
+            for (Student cur : students) {
+                res = Math.max(res, cur.name().length());
+            }
+
+            return res;
         }
     }
 }
