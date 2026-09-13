@@ -14,9 +14,7 @@ public class Task6 {
 
             if (!Character.isLetter(current)) {
                 count = 0;
-            }
-
-            else if (count++ == 0) {
+            } else if (count++ == 0) {
                 result++;
             }
         }
@@ -30,15 +28,48 @@ public class Task6 {
             return false;
         }
 
-        int at = email.indexOf('@');
-        if (at != email.lastIndexOf('@') || at == 0 || at == -1) {
+        if (email.contains("..")) {
             return false;
         }
 
+        int at = email.indexOf('@');
+        if (at <= 0 || at != email.lastIndexOf('@')) {
+            return false;
+        }
+
+        String local = email.substring(0, at);
         String domain = email.substring(at+1);
 
-        int dot = domain.indexOf('.');
-        return dot > 0 && dot != domain.length() - 1;
+        for (int i = 0; i < local.length(); i++) {
+            char c = local.charAt(i);
+            boolean ok = Character.isLetterOrDigit(c) || c == '.' || c == '_' || c == '%' || c == '+' || c == '-';
+
+            if (!ok) {
+                return false;
+            }
+        }
+
+        if (local.charAt(0) == '-' || local.charAt(local.length() - 1) == '-') {
+            return false;
+        }
+
+        for (int i = 0; i < domain.length(); i++) {
+            char c = domain.charAt(i);
+            boolean ok = Character.isLetterOrDigit(c) || c == '.' || c == '-';
+
+            if (!ok) {
+                return false;
+            }
+        }
+
+        if (domain.charAt(0) == '-' || domain.charAt(domain.length() - 1) == '-') {
+            return false;
+        }
+
+        int firstDor = domain.indexOf('.');
+        int lastDot = domain.lastIndexOf('.');
+
+        return firstDor > 0 && lastDot < domain.length() - 2;
     }
 
     // №3
