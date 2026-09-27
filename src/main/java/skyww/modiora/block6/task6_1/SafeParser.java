@@ -1,4 +1,4 @@
-package skyww.modiora.block6.Task6_1;
+package skyww.modiora.block6.task6_1;
 
 public class SafeParser {
 
